@@ -1,4 +1,4 @@
-from tree import Node
+from node import Node
 
 def test_depth():
     trials = [

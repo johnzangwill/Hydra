@@ -1,4 +1,4 @@
-from tree import Node
+from node import Node
 from plot import Plot
 import time
 
