@@ -2,15 +2,26 @@ from node import Node
 from plot import Plot
 import time
 
+# Parameters:
+# n: the starting replication count
+# i: replication count increment
+Node.n = 2
+Node.i = 0
+
+# Codes
 HEAD = 1
 NECK = 2
-LINE_WIDTH = 2
-HEAD_RADIUS = 6
+
+# Dimensions
+LINE_WIDTH = 2.0
+HEAD_RADIUS = 6.0
 OUTSIDE_RADIUS = HEAD_RADIUS + LINE_WIDTH
 
+# Globals
 pause = False
 last_ordinal = None
 
+# Methods
 def motion(x, y):
     type, node = hit(hydra, x, y)
     if type == HEAD:
@@ -30,7 +41,7 @@ def click(x, y):
         node.chop_myself()
         update()
 
-def _play(delay):
+def play(delay):
     global pause
     pause = False
     while not hydra.is_head() and not pause:
@@ -39,7 +50,7 @@ def _play(delay):
         plot.update()
         time.sleep(delay)
 
-def _pause():
+def pause():
     global pause
     pause = True
 
@@ -50,13 +61,13 @@ def button(option):
         update()
 
     if option == 'PLAY':
-        _play(1)
+        play(1.0)
             
     if option == 'FAST':
-        _play(0.1)
+        play(0.1)
             
     elif option == 'PAUSE':
-        _pause()
+        pause()
 
     elif option == 'STOP':
         hydra.reset()
@@ -157,11 +168,6 @@ def update():
 points = []
 plot = Plot(motion, click, resize, button)
 
-# n: the starting replication count
-# i: replication count increment
-
-Node.n = 2
-Node.i = 0
 hydra = Node()
 plot.loop() 
 
