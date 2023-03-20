@@ -18,7 +18,7 @@ HEAD_RADIUS = 6.0
 OUTSIDE_RADIUS = HEAD_RADIUS + LINE_WIDTH
 
 # Globals
-pause = False
+paused = False
 last_ordinal = None
 
 # Methods
@@ -42,20 +42,20 @@ def click(x, y):
         update()
 
 def play(delay):
-    global pause
-    pause = False
-    while not hydra.is_head() and not pause:
+    global paused
+    paused = False
+    while not hydra.is_head() and not paused:
         hydra.chop_child()
         update()
         plot.update()
         time.sleep(delay)
 
 def pause():
-    global pause
-    pause = True
+    global paused
+    paused = True
 
 def button(option):
-    global pause
+    global paused
     if option == 'SINGLE':
         hydra.chop_child()
         update()
