@@ -79,7 +79,7 @@ def resize():
 def plot_hydra():
     points.clear()
     plot.clear()
-    depth = hydra.get_depth()
+    depth = hydra.get_height()
     plot_node(
         hydra,
         plot.width / 2,
@@ -147,6 +147,8 @@ def update():
     global last_ordinal
 
     plot_hydra()
+
+    print(f'Height is {hydra.get_height()}')
 
     ordinal = hydra.get_ordinal()
     text1 = 'NEW'
