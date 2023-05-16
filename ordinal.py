@@ -83,13 +83,13 @@ class Ordinal:
         string = ''
         for count, power in self.terms:
             for _ in range(count):
-                string += power.to_brackets()
-        return f'({string})'
+                string += f'({power.to_brackets()})'
+        return string
 
-    def to_nines(self):
+    def to_real(self):
         brackets = self.to_brackets()
-        nines = brackets.replace('(', '0').replace(')', '9')
-        return f'0.{nines}'
+        decimal = brackets.replace('(', '9').replace(')', '1')
+        return f'0.{decimal or "0"}'
 
     @staticmethod
     def _to_string(count, power):

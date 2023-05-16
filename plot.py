@@ -80,7 +80,7 @@ class Plot:
             width=width,
         )
 
-    def text(self, x, y, text, size):
+    def text(self, x, y, text, size=15):
         self.canvas.create_text(x, self.height - y, text=text, anchor=SW, font=Font(family='courier', size=size), fill='blue')
 
     def set_cursor(self, name):

@@ -66,6 +66,12 @@ class Node:
         else:
             raise Exception('not head')
 
+    def get_count(self):
+        if self.children:
+            return 1 + sum(child.get_count() for child in self.children)
+
+        return 1
+    
     def get_height(self):
         if self.children:
             return 1 + max(child.get_height() for child in self.children)

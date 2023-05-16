@@ -87,15 +87,26 @@ def plot_hydra():
         plot.width - 2 * OUTSIDE_RADIUS,
         0 if depth == 0 else (plot.height - 2 * OUTSIDE_RADIUS) / (depth + 0.3)
     )
-    plot_ordinal(plot.width/2 + HEAD_RADIUS + 14, 0, hydra.get_ordinal())
+    alpha = hydra.get_ordinal()
+    plot_ordinal(plot.width/2 + HEAD_RADIUS + 14, 0, alpha)
 
-def plot_ordinal(x, y, ordinal):
-    text = str(ordinal)
+    plot.text(0, 40, f'Height: {hydra.get_height()}')
+    plot.text(0, 20, f'Count: {hydra.get_count()}')
+    plot_real(0, 0, alpha)
+
+def plot_real(x, y, alpha):
+    char = alpha.to_real()
+    if len(char) > 40:
+        char = char[:40] + '…'
+    plot.text(x, y, char)
+
+def plot_ordinal(x, y, alpha):
+    text = str(alpha)
     x0 = x
     y0 = y
     dx = 0.7
     dy = 0.6
-    size = 20
+    size = 15
     scale = 0.7
     for char in text:
         if char == '↑':
@@ -158,12 +169,12 @@ def update():
     print(f'Current is {text1}: {ordinal}')
 
     text2 = 'NEW'
-    nines = ordinal.to_nines()
+    real = ordinal.to_real()
     if last_ordinal:
-        last_nines = last_ordinal.to_nines()
-        text2 = 'LESS' if nines > last_nines else 'MORE' if nines < last_nines else 'EQUAL'
+        last_real = last_ordinal.to_real()
+        text2 = 'LESS' if real < last_real else 'MORE' if real > last_real else 'EQUAL'
 
-    print(f'Previous was {text2}: {nines}')
+    print(f'Current is {text2}: {real}')
     assert text1 == text2
     last_ordinal = ordinal
 
