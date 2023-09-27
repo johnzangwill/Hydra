@@ -78,17 +78,16 @@ class Ordinal:
             return 0
 
         return 1
-
-    def to_brackets(self):
+    
+    def to_decimal(self):
         string = ''
         for count, power in self.terms:
             for _ in range(count):
-                string += f'({power.to_brackets()})'
+                string += f'9{power.to_decimal()}1'
         return string
 
     def to_real(self):
-        brackets = self.to_brackets()
-        decimal = brackets.replace('(', '9').replace(')', '1')
+        decimal = self.to_decimal()
         return f'0.{decimal or "0"}'
 
     @staticmethod
