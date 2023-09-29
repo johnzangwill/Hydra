@@ -9,6 +9,6 @@ Click on node to add branches.
 
 Click on leaf branch to cut off head and cause replication
 
-Number lower left is Zangwill real representaion of the tree in the interval [0, 1]
+Number lower left is the real representaion of the tree in the interval [0, 1]
 
 Number on right is the Kirby-Paris ordinal of the tree in Cantor normal form 
